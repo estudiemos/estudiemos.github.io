@@ -8,6 +8,18 @@
 <body>
     <h1 id="titulo">¡Aprendamos las sílabas!</h1>
     <script>
+        function pronuncia(silaba) {
+            let pronunciacion = silaba in pronunciaciones ? pronunciaciones[silaba] : silaba
+            const utterThis = new SpeechSynthesisUtterance(pronunciacion);
+            utterThis.pitch = 1;
+            utterThis.lang = 'es-ES';
+            utterThis.rate = 0.9;
+            const voices = speechSynthesis.getVoices();
+            utterThis.voice = voices[11];
+            console.log(utterThis.voice);
+            synth.speak(utterThis);
+        }
+
         async function escuchar() {
             await pronunciar()
             await pronunciar_palabra()
@@ -83,7 +95,7 @@
         pronunciaciones['cu'] = "cù"
         pronunciaciones['chu'] = "chù"
         pronunciaciones['ga'] = "gá"
-        pronunciaciones['ge'] = "gé"
+        pronunciaciones['ge'] = "gë"
         pronunciaciones['go'] = "gò"
         pronunciaciones['gu'] = "gú"
         pronunciaciones['ha'] = "a"
@@ -171,6 +183,7 @@
     <script src="emojis.js"></script>
     <p id="texto" style="font-size:20ch;text-align: center;">MI</p>
     <div style="text-align: center;">
+        <!--<button type="button" style="font-size:10ch;text-align: center;" onclick="pronuncia('ge');">&#x1F508</button> -->
         <button type="button" style="font-size:10ch;text-align: center;" onclick="escuchar();">&#x1F50A</button>
     </div>
     <div id="respuesta" style="text-align: center; margin: 1rem; display: none;">
