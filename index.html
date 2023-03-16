@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <h1 id="titulo">¡Aprendamos las sílabas!</h1>
+    <h1 id="titulo" style="text-align: center;"">¡Aprendamos las sílabas!</h1>
     <script>
         function pronuncia(silaba) {
             let pronunciacion = silaba in pronunciaciones ? pronunciaciones[silaba] : silaba
@@ -181,12 +181,15 @@
         window.addEventListener('load', siguiente_silaba)
     </script>
     <script src="emojis.js"></script>
-    <p id="texto" style="font-size:20ch;text-align: center;">MI</p>
+    <h2 style="text-align: center;">1. Pronuncia</h2>
+    <p id="texto" style="font-size:20ch;text-align: center; margin:0%">MI</p>
     <div style="text-align: center;">
         <!--<button type="button" style="font-size:10ch;text-align: center;" onclick="pronuncia('ge');">&#x1F508</button> -->
+        <h2 style="text-align: center;">2. Escucha</h2>
         <button type="button" style="font-size:10ch;text-align: center;" onclick="escuchar();">&#x1F50A</button>
     </div>
     <div id="respuesta" style="text-align: center; margin: 1rem; display: none;">
+        <h2 style="text-align: center;">3. ¿Acertaste?</h2>
         <button type="button" style="font-size:10ch;"
             onclick="siguiente_silaba(); ocultar_elemento('respuesta')">&#x1F642</button>
         <button type="button" style="font-size:10ch;"
