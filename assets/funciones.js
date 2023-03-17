@@ -29,6 +29,7 @@ async function pronunciar() {
     const voices = speechSynthesis.getVoices();
     utterThis.voice = voices[11];
     console.log(utterThis.voice);
+    document.getElementById("voice").textContent = utterThis.voice.lang
     synth.speak(utterThis);
     return new Promise(resolve => {
         utterThis.onend = resolve;
@@ -45,6 +46,7 @@ async function pronunciar_palabra() {
     const voices = speechSynthesis.getVoices();
     utterThis.voice = voices[11];
     console.log(utterThis.voice);
+    document.getElementById("voice").textContent = utterThis.voice.lang
     synth.speak(utterThis);
     return new Promise(resolve => {
         utterThis.onend = resolve;
