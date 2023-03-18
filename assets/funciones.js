@@ -32,7 +32,10 @@ async function pronunciar(pronunciacion) {
     utterThis.pitch = 1;
     utterThis.lang = 'es-ES';
     utterThis.rate = 0.9;
-    //const voices = speechSynthesis.getVoices();
+    const voices = speechSynthesis.getVoices();
+    for (let i = 0; i < voices.length; i++) {
+        console.log(voices[i])
+    }
     //utterThis.voice = voices[11];
     utterThis.voice = speechSynthesis.getVoices().find(voice => /Google español/.test(voice.name));
     console.log(utterThis.voice);
