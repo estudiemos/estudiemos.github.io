@@ -37,7 +37,11 @@ async function pronunciar(pronunciacion) {
         console.log(voices[i])
     }*/
     //utterThis.voice = voices[11];
-    utterThis.voice = speechSynthesis.getVoices().find(voice => /(Google español|español España)/.test(voice.name));
+    let selectedVoice = speechSynthesis.getVoices().find(voice => /(Google español|español España)/.test(voice.name));
+    if (selectedVoice == null) {
+        selectedVoice = speechSynthesis.getVoices().find(voice => /es(-|_)ES/.test(voice.lang));
+    }
+    utterThis.voice = selectedVoice
     console.log(utterThis.voice);
     document.getElementById("voice").textContent = utterThis.voice.name
     synth.speak(utterThis);
