@@ -75,6 +75,7 @@ selectedVoice = ""
 voices = ""
 //window.addEventListener('load', inicio)
 speechSynthesis.addEventListener("voiceschanged", () => {
+    console.log("voiceschanged event.");
     voices = speechSynthesis.getVoices();
     seleccionarVoz();
     siguiente_texto();
