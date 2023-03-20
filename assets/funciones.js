@@ -1,18 +1,14 @@
 async function escuchar() {
-    await seleccionarVoz();
     let texto = document.getElementById("texto").textContent.toLowerCase()
     if (texto in pronunciaciones) {
         await pronunciar(pronunciaciones[texto])
     } else { pronunciar(texto) }
     await dormir(900)
 
-    if (texto in emojis) {
-        console.log("Hay emoji.")
+    if (texto in emojis) {        
         await pronunciar(emojis[texto][0])
         await dormir(900)
-    }else{
-        console.log("NO hay emoji.")
-    }
+    } 
     mostrar_elemento('acertaste')
 
 }
@@ -23,7 +19,7 @@ function pronunciar(pronunciacion) {
     utterThis.lang = 'es-ES';
     utterThis.rate = 0.9;
     utterThis.voice = selectedVoice;
-    console.log(utterThis.voice);
+    //console.log(utterThis.voice);
     document.getElementById("voice").textContent = utterThis.voice.name
     speechSynthesis.speak(utterThis);
     return new Promise(resolve => {
@@ -45,7 +41,6 @@ function toggleMayMin() {
 }
 
 function dormir(ms) {
-    console.log("dormir "+ ms)
     return new Promise(
         resolve => setTimeout(resolve, ms)
     );
@@ -65,24 +60,13 @@ function mostrar_elemento(identificador) {
     x.style.display = "block";
 }
 
-async function seleccionarVoz() {
-    if ('speechSynthesis' in window) {
-        console.log("speechSynthesis found.")
-    }
-    console.log("typeof "+typeof selectedVoice)
+function seleccionarVoz() {
     if (typeof selectedVoice != "object") {
-        console.log("voices.length "+voices.length)
-        /*for (let i = 0; i < voices.length; i++) {
-            console.log(voices[i])
-        }*/
-        //utterThis.voice = voices[11];
+        console.log("voices.length " + voices.length)
         selectedVoice = voices.find(voice => /(Google español|español España)/.test(voice.name));
         if (selectedVoice == null) {
             selectedVoice = voices.find(voice => /es(-|_)ES/.test(voice.lang));
         }
-        console.log("Voz seleccionada: "+selectedVoice)
-    } else {
-        console.log(selectedVoice + "seleccionada previamente.")
     }
 }
 
@@ -91,5 +75,6 @@ voices = ""
 //window.addEventListener('load', inicio)
 speechSynthesis.addEventListener("voiceschanged", () => {
     voices = speechSynthesis.getVoices();
+    seleccionarVoz();
     siguiente_texto();
-  })
+})
