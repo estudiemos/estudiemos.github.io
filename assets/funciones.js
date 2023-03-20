@@ -18,6 +18,7 @@ function pronunciar(pronunciacion) {
     utterThis.pitch = 1;
     utterThis.lang = 'es-ES';
     utterThis.rate = 0.9;
+    console.log(selectedVoice);
     utterThis.voice = selectedVoice;
     //console.log(utterThis.voice);
     document.getElementById("voice").textContent = utterThis.voice.name
