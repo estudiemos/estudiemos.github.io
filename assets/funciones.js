@@ -18,8 +18,8 @@ async function escuchar() {
         await pronunciar(pronunciaciones[texto])
     } else { pronunciar(texto) }
     await dormir(500)
-    
-    if (texto in emojis) {        
+
+    if (texto in emojis) {
         await pronunciar(emojis[texto][0])
         await dormir(500)
     }
@@ -72,6 +72,19 @@ async function pronunciar_palabra() {
     });
 }
 */
+
+function toggleMayMin() {
+    texto = document.getElementById("texto").textContent
+    let nuevoTexto = ""
+    if (texto == texto.toUpperCase()) {
+        nuevoTexto = texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+    } else if ((texto == texto.toLowerCase())) {
+        nuevoTexto = texto.toUpperCase();
+    } else {
+        nuevoTexto = texto.toLowerCase()
+    }
+    document.getElementById("texto").textContent = nuevoTexto;
+}
 
 function dormir(ms) {
     return new Promise(
