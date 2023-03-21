@@ -23,7 +23,11 @@ function pronunciar(pronunciacion) {
         console.log(voices[i])
     }
     console.log(selectedVoice);
-    utterThis.voice = selectedVoice;
+    if (typeof selectedVoice === "object") {
+        utterThis.voice = selectedVoice;
+    } else {
+        utterThis.lang = 'es-ES';
+    }
     //console.log(utterThis.voice);
     document.getElementById("voice").textContent = utterThis.voice.name
     speechSynthesis.speak(utterThis);
