@@ -5,10 +5,10 @@ async function escuchar() {
     } else { pronunciar(texto) }
     await dormir(900)
 
-    if (texto in emojis) {        
+    if (texto in emojis) {
         await pronunciar(emojis[texto][0])
         await dormir(900)
-    } 
+    }
     mostrar_elemento('acertaste')
 
 }
@@ -74,9 +74,17 @@ function seleccionarVoz() {
 selectedVoice = ""
 voices = ""
 //window.addEventListener('load', inicio)
-speechSynthesis.addEventListener("voiceschanged", () => {
+
+window.speechSynthesis.onvoiceschanged = () => {
     console.log("voiceschanged event.");
     voices = speechSynthesis.getVoices();
     seleccionarVoz();
     siguiente_texto();
-})
+}
+
+/*speechSynthesis.addEventListener("voiceschanged", () => {
+    console.log("voiceschanged event.");
+    voices = speechSynthesis.getVoices();
+    seleccionarVoz();
+    siguiente_texto();
+})*/
