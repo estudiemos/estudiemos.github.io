@@ -18,6 +18,10 @@ function pronunciar(pronunciacion) {
     utterThis.pitch = 1;
     utterThis.lang = 'es-ES';
     utterThis.rate = 0.9;
+    voices = speechSynthesis.getVoices()
+    for (let i = 0; i < voices.length; i++) {
+        console.log(voices[i])
+    }
     console.log(selectedVoice);
     utterThis.voice = selectedVoice;
     //console.log(utterThis.voice);
