@@ -30,7 +30,7 @@ function pronunciar(pronunciacion) {
     utterThis.voice = selectedVoice
     //console.log(utterThis.voice);
     
-    if (typeof selectedVoice == "object") {
+    if (typeof selectedVoice == "object") {      
         document.getElementById("voice").textContent = "Voz: " + utterThis.voice.name
     }
 
