@@ -22,15 +22,15 @@ function pronunciar(pronunciacion) {
     for (let i = 0; i < voices.length; i++) {
         console.log(voices[i])
     }
-    console.log(selectedVoice);
-    if (typeof selectedVoice === "object") {
-        utterThis.voice = selectedVoice;
-    } else {
-        utterThis.lang = 'es-ES';
+    console.log("voices.length " + voices.length)
+    let selectedVoice = voices.find(voice => /(Google español|español España)/.test(voice.name));
+    if (selectedVoice == null) {
+        selectedVoice = voices.find(voice => /es(-|_)ES/.test(voice.lang));
     }
-    //console.log(utterThis.voice);
-    document.getElementById("voice").textContent = utterThis.voice.name
+    utterThis.voice = selectedVoice
+    console.log(utterThis.voice);    
     speechSynthesis.speak(utterThis);
+    document.getElementById("voice").textContent = utterThis.voice.name
     return new Promise(resolve => {
         utterThis.onend = resolve;
     });
@@ -81,14 +81,17 @@ function seleccionarVoz() {
 
 selectedVoice = ""
 voices = ""
-//window.addEventListener('load', inicio)
 
-window.speechSynthesis.onvoiceschanged = () => {
+window.addEventListener('load', () => {
+    siguiente_texto();
+})
+
+/*window.speechSynthesis.onvoiceschanged = () => {
     console.log("voiceschanged event.");
     voices = speechSynthesis.getVoices();
     seleccionarVoz();
     siguiente_texto();
-}
+}*/
 
 /*speechSynthesis.addEventListener("voiceschanged", () => {
     console.log("voiceschanged event.");
